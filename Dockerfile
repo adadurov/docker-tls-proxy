@@ -18,6 +18,9 @@ RUN apk update && \
 COPY entry.sh /usr/local/bin/entry.sh
 COPY nginx/conf.d /etc/nginx/conf.d
 
+COPY server.pem /etc/nginx/cert.pem
+COPY server.key /etc/nginx/key.pem
+
 ENTRYPOINT ["/usr/local/bin/entry.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]

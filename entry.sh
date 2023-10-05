@@ -1,5 +1,6 @@
 #!/bin/sh -e
 
+
 : "${ENABLE_HTTP2:=false}"
 : "${ENABLE_WEBSOCKET:=false}"
 : "${FORCE_HTTPS:=false}"
@@ -23,8 +24,8 @@ if [ "$SELF_SIGNED" = 'true' ]; then
   fi
 else
   if ([ -z "$TLS_CERTIFICATE" ] || [ -z "$TLS_KEY" ]); then
-    echo '$TLS_CERTIFICATE and $TLS_KEY are not set, exiting!'
-    exit 1
+    echo '$TLS_CERTIFICATE and $TLS_KEY are not set, assuming /etc/nginx/cert.pem and key.pem exist!'
+#    exit 1
   else
     echo "$TLS_CERTIFICATE" > /etc/nginx/cert.pem
     echo "$TLS_KEY" > /etc/nginx/key.pem
